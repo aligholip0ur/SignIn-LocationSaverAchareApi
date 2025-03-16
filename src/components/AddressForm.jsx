@@ -34,12 +34,8 @@ export default function AddressForm({ setUserData }) {
 
     const phoneRegex = /^09[0-9]{9}$/;
     if (!phoneRegex.test(formData.coordinate_mobile)) {
-      newErrors.coordinate_mobile = "شماره موبایل باید با 09 شروع شده و 11 رقم باشد.";
-    }
-
-    const landlineRegex = /^0[1-9]{1}[0-9]{9}$/;
-    if (formData.coordinate_phone_number && !landlineRegex.test(formData.coordinate_phone_number)) {
-      newErrors.coordinate_phone_number = "شماره تلفن ثابت باید ۱۱ رقمی و با 0 شروع شود.";
+      newErrors.coordinate_mobile =
+        "شماره موبایل باید با 09 شروع شده و 11 رقم باشد.";
     }
 
     if (!formData.address || formData.address.length < 10) {
@@ -63,18 +59,17 @@ export default function AddressForm({ setUserData }) {
   };
 
   return (
-    <div
-      className="container-fluid bg-light d-flex flex-column align-items-center justify-content-center mt-5 p-3"
-      style={{ direction: "rtl" }}
-    >
+    <div className="container  d-flex flex-column align-items-center justify-content-center py-3" style={{ direction: "rtl" }}>
       <div
-        className="bg-white p-4 rounded shadow-lg"
-        style={{ maxWidth: "800px", width: "100%" }}
+        className="bg-white p-3 rounded shadow-lg w-100"
+        style={{ maxWidth: "600px" }}
       >
-        <h5 className="mb-3">لطفا مشخصات و آدرس خود را وارد کنید</h5>
+        <h5 className="mb-2 text-center">
+          لطفا مشخصات و آدرس خود را وارد کنید
+        </h5>
         <form onSubmit={submitHandler}>
-          <div className="row mb-3">
-            <div className="col-md-4">
+          <div className="row g-2 mb-3">
+            <div className="col-12 col-md-6">
               <label className="form-label">نام</label>
               <input
                 type="text"
@@ -83,9 +78,11 @@ export default function AddressForm({ setUserData }) {
                 value={formData.first_name}
                 onChange={handleChange}
               />
-              {errors.first_name && <div className="text-danger">{errors.first_name}</div>}
+              {errors.first_name && (
+                <div className="text-danger small">{errors.first_name}</div>
+              )}
             </div>
-            <div className="col-md-4">
+            <div className="col-12 col-md-6">
               <label className="form-label">نام خانوادگی</label>
               <input
                 type="text"
@@ -94,23 +91,29 @@ export default function AddressForm({ setUserData }) {
                 value={formData.last_name}
                 onChange={handleChange}
               />
-              {errors.last_name && <div className="text-danger">{errors.last_name}</div>}
-            </div>
-            <div className="col-md-4">
-              <label className="form-label">شماره تلفن همراه</label>
-              <input
-                type="text"
-                name="coordinate_mobile"
-                className="form-control"
-                value={formData.coordinate_mobile}
-                onChange={handleChange}
-              />
-              {errors.coordinate_mobile && <div className="text-danger">{errors.coordinate_mobile}</div>}
+              {errors.last_name && (
+                <div className="text-danger small">{errors.last_name}</div>
+              )}
             </div>
           </div>
 
-          <div className="row mb-3">
-            <div className="col-md-3">
+          <div className="row g-2 mb-3">
+            <div className="col-12 col-md-6">
+            <label className="form-label">شماره تلفن همراه</label>
+            <input
+              type="text"
+              name="coordinate_mobile"
+              className="form-control"
+              value={formData.coordinate_mobile}
+              onChange={handleChange}
+            />
+            {errors.coordinate_mobile && (
+              <div className="text-danger small">
+                {errors.coordinate_mobile}
+              </div>
+            )}
+            </div>
+                <div className="col-md-6 col-12">
               <label className="form-label">شماره تلفن ثابت (اختیاری)</label>
               <input
                 type="text"
@@ -121,18 +124,22 @@ export default function AddressForm({ setUserData }) {
               />
               {errors.coordinate_phone_number && <div className="text-danger">{errors.coordinate_phone_number}</div>}
             </div>
-            <div className="col-md-9 mb-3">
-              <label className="form-label">آدرس</label>
-              <input
-                type="text"
-                name="address"
-                className="form-control"
-                value={formData.address}
-                onChange={handleChange}
-              />
-              {errors.address && <div className="text-danger">{errors.address}</div>}
-            </div>
           </div>
+
+          <div className="mb-3">
+            <label className="form-label">آدرس</label>
+            <textarea
+              name="address"
+              className="form-control"
+              rows="1"
+              value={formData.address}
+              onChange={handleChange}
+            ></textarea>
+            {errors.address && (
+              <div className="text-danger small">{errors.address}</div>
+            )}
+          </div>
+
           <div className="mb-3">
             <label className="form-label">جنسیت</label>
             <div className="d-flex gap-3">
@@ -159,9 +166,12 @@ export default function AddressForm({ setUserData }) {
                 <label className="form-check-label">خانم</label>
               </div>
             </div>
-            {errors.gender && <div className="text-danger">{errors.gender}</div>}
+            {errors.gender && (
+              <div className="text-danger small">{errors.gender}</div>
+            )}
           </div>
-          <button type="submit" className="btn btn-success w-100">
+
+          <button type="submit" className="btn btn-success w-100 py-2 fs-5">
             ثبت و ادامه
           </button>
         </form>

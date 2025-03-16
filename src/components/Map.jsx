@@ -26,7 +26,6 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
     return <Marker position={position} />;
   }
 
- 
   const findMyLocation = () => {
     if (!navigator.geolocation) {
       alert("موقعیت‌یابی توسط مرورگر شما پشتیبانی نمی‌شود.");
@@ -46,7 +45,6 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
     );
   };
 
- 
   const handleSaveAndSubmit = async () => {
     setLoading(true); 
     await handleFinalSubmit();
@@ -54,7 +52,7 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
   };
 
   return (
-    <div className="container-fluid bg-light d-flex flex-column align-items-center justify-content-center mt-5 p-3" style={{ direction: "rtl" }}>
+    <div className="container-fluid bg-light d-flex flex-column align-items-center justify-content-center mt-4 p-3" style={{ direction: "rtl" }}>
       <div className="bg-white p-4 rounded shadow-lg" style={{ maxWidth: "800px", width: "100%" }}>
         <div className="d-flex flex-row justify-content-between mb-2">
           <h2 className="text-primary">آدرس خود را انتخاب کنید</h2>
@@ -62,7 +60,7 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
             📍 مکان من
           </button>
         </div>
-        <MapContainer center={position} zoom={13} style={{ height: "250px", width: "100%", borderRadius: "10px" }}>
+        <MapContainer center={position} zoom={13} style={{ height: "310px", width: "100%", borderRadius: "10px" }}> 
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <LocationMarker />
         </MapContainer>
