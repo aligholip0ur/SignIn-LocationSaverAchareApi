@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import MapComponent from "./components/map";
+import MapComponent from "./components/Map";
 import AddressForm from "./components/AddressForm";
 import AllAddress from "./components/AllAddresses";
 import SuccessPage from "./components/SuccessPage";

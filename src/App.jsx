@@ -4,7 +4,6 @@ import AppRouts from "./routers";
 import Header from "./components/Header";
 
 function MainAppContent() {
-  // State مرکزی برای ذخیره داده‌های کاربر
   const [userData, setUserData] = useState({});
   const [serverResponse, setServerResponse] = useState([]);
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ function MainAppContent() {
   }, []);
 
   const handleFinalSubmit = async () => {
-    console.log("📦 داده‌های ارسالی:", userData); // بررسی داده‌ها قبل از ارسال
+    console.log("📦 داده‌های ارسالی:", userData);
 
     try {
       const response = await fetch(

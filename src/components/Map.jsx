@@ -10,24 +10,23 @@ L.Icon.Default.mergeOptions({
 });
 
 const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
-  const [position, setPosition] = useState([35.6892, 51.3890]); // پیش‌فرض: تهران
+  const [position, setPosition] = useState([35.6892, 51.3890]); 
   const [coords, setCoords] = useState("منتظر انتخاب...");
-  const [loading, setLoading] = useState(false); // ✅ متغیر برای نمایش لودینگ
-
-  // دریافت مختصات هنگام کلیک روی نقشه
+  const [loading, setLoading] = useState(false); 
+ 
   function LocationMarker() {
     useMapEvents({
       click(e) {
         const newPosition = [e.latlng.lat, e.latlng.lng];
         setPosition(newPosition);
         setCoords(`Lat: ${e.latlng.lat.toFixed(6)}, Lng: ${e.latlng.lng.toFixed(6)}`);
-        setUserData((prev) => ({ ...prev, lat: e.latlng.lat, lng: e.latlng.lng })); // ذخیره مختصات در state مرکزی
+        setUserData((prev) => ({ ...prev, lat: e.latlng.lat, lng: e.latlng.lng })); 
       },
     });
     return <Marker position={position} />;
   }
 
-  // دکمه مکان‌یابی
+ 
   const findMyLocation = () => {
     if (!navigator.geolocation) {
       alert("موقعیت‌یابی توسط مرورگر شما پشتیبانی نمی‌شود.");
@@ -39,7 +38,7 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
         const lng = pos.coords.longitude;
         setPosition([lat, lng]);
         setCoords(`Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`);
-        setUserData((prev) => ({ ...prev, lat, lng })); // به‌روزرسانی state مرکزی
+        setUserData((prev) => ({ ...prev, lat, lng })); 
       },
       (error) => {
         alert("خطا در دریافت موقعیت: " + error.message);
@@ -47,11 +46,11 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
     );
   };
 
-  // ارسال نهایی اطلاعات
+ 
   const handleSaveAndSubmit = async () => {
-    setLoading(true); // ✅ نمایش لودینگ
-    await handleFinalSubmit(); // ✅ ارسال اطلاعات به سرور
-    setLoading(false); // ✅ حذف لودینگ بعد از دریافت پاسخ
+    setLoading(true); 
+    await handleFinalSubmit();
+    setLoading(false);
   };
 
   return (
@@ -68,7 +67,6 @@ const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
           <LocationMarker />
         </MapContainer>
         
-        {/* ✅ دکمه ارسال با اسپینر بوت‌استرپ */}
         <button type="button" className="btn btn-success w-100 mt-3" onClick={handleSaveAndSubmit} disabled={loading}>
           {loading ? (
             <>
