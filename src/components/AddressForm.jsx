@@ -59,10 +59,10 @@ export default function AddressForm({ setUserData }) {
   };
 
   return (
-    <div className="container  d-flex flex-column align-items-center justify-content-center py-3" style={{ direction: "rtl" }}>
+    <div className="container-fluid  d-flex flex-column align-items-center mt-4 justify-content-center py-4" style={{ direction: "rtl" }}>
       <div
-        className="bg-white p-3 rounded shadow-lg w-100"
-        style={{ maxWidth: "600px" }}
+        className="bg-white p-4 rounded shadow-lg w-100"
+        style={{ maxWidth: "800px" }}
       >
         <h5 className="mb-2 text-center">
           لطفا مشخصات و آدرس خود را وارد کنید

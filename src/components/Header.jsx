@@ -1,10 +1,16 @@
 import logo from "../assets/pics/achareh-type-logo-v2.c68d84f.png";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if(location.pathname === "/SuccessPage"){
+      setIsActive(true);
+    }
+  }, [location.pathname]);
   return (
     <>
       <section>

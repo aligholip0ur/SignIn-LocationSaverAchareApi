@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import AppRouts from "./routers";
 import Header from "./components/Header";
+import { useGetAddressesMutation } from "./Api/Api";
 
 function MainAppContent() {
   const [userData, setUserData] = useState({});
   const [serverResponse, setServerResponse] = useState([]);
   const navigate = useNavigate();
+  const [getAddresses] = useGetAddressesMutation();
 
   useEffect(() => {
     window.history.pushState(null, "", "/");
@@ -14,29 +16,10 @@ function MainAppContent() {
 
   const handleFinalSubmit = async () => {
     console.log("📦 داده‌های ارسالی:", userData);
-
     try {
-      const response = await fetch(
-        "https://stage.achareh.ir/api/karfarmas/address",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Basic MDk4MjIyMjIyMjI6U2FuYTEyMzQ1Njc4",
-          },
-          body: JSON.stringify(userData),
-        }
-      );
-      const responseText = await response.text();
-      if (!response.ok) {
-        console.error("❌ خطای سرور:", response.status);
-        console.error("❌ پاسخ سرور:", responseText);
-        throw new Error(`Server Error: ${response.status}`);
-      }
-      const result = JSON.parse(responseText);
-      if (result) {
-        setServerResponse((prev) => [...prev, result]);
-        console.log("✅ آدرس با موفقیت ثبت شد:", result);
+      const response = await getAddresses(userData);
+      if (response.data) {
+        setServerResponse((prev) => [...prev, response.data]);
         navigate("/SuccessPage");
       }
     } catch (error) {

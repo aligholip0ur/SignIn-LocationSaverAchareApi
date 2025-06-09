@@ -9,7 +9,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const MapComponent = ({ userData, setUserData, handleFinalSubmit }) => {
+const MapComponent = ({setUserData, handleFinalSubmit }) => {
   const [position, setPosition] = useState([35.6892, 51.3890]); 
   const [coords, setCoords] = useState("منتظر انتخاب...");
   const [loading, setLoading] = useState(false); 
